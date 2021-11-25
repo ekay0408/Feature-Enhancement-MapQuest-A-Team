@@ -5,7 +5,7 @@ import climage
 from colored import fg, bg, attr
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
-key = "QzJEMxpGCINF81iU0qaANwNZesHMhO8x"
+key = "G6YCn5dNaSGvufdGp63IFq45Gvr8J8bC"
 
 while True:
     orig = input("%sStarting Location: %s" % (fg(11), attr(0)))
