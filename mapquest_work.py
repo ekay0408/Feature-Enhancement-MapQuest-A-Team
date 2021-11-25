@@ -5,7 +5,7 @@ main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "7PoLIYVHFdnu6VC5ZCpwxL9Avrg6h0vV"
 
 while True:
-    username = input("Please Input Your Name: ")
+    username = input("Please Input Your Name Here: ")
     if username == "quit" or username == "q":
         break
     print("Car, Airplane, Boat, Busses, or Train.")
