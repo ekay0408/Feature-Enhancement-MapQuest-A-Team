@@ -1,14 +1,15 @@
 import urllib.parse
 import requests
-#hiiiiiiiiiiiiiiiiiiii
+
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
-key = "7PoLIYVHFdnu6VC5ZCpwxL9Avrg6h0vV"
+second_api = "http://www.mapquestapi.com/directions/v2/alternateroutes?"
+key = "G6YCn5dNaSGvufdGp63IFq45Gvr8J8bC"
 
 while True:
-    username = input("Please Input Your Name Here: ")
+    username = input("Please Input Your Name: ")
     if username == "quit" or username == "q":
         break
-    print("Car, Airplane, Boat, Busses, or Train.")
+    print("Car, Airplane, Boat, Buses, or Train.")
     vehicle = input("Please Input Type of Transportation: ")
     if vehicle == "quit" or vehicle == "q":
         break
@@ -27,8 +28,15 @@ while True:
         print("URL: " + (url))
         json_data = requests.get(url).json()
         json_status = json_data["info"]["statuscode"]
+
+        # second api
+        url2 = second_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
+        print("URL: " + (url2))
+        json_data2 = requests.get(url2).json()
+        json_status2 = json_data2["info"]["statuscode"]
+
         if json_status == 0:
-            print("API Status: " + str(json_status) + " = A successful route call.\n")
+            print("API Status: " + str(json_status) + " = A successful route call.\n")  
             if (vehicle == "car"):
                 print("The Toll Fee is $10")
             elif (vehicle == "airplane"):
@@ -40,6 +48,8 @@ while True:
             print("Trip Duration: " + (json_data["route"]["formattedTime"]))
             print("Kilometers: " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
             print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
+
+            #print("Excess Time: " + str(json_data2["timeOverage"]))
             print("=============================================")
             for each in json_data["route"]["legs"][0]["maneuvers"]:
                 print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
