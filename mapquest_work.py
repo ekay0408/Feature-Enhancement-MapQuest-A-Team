@@ -1,27 +1,28 @@
 import urllib.parse
 import requests
+from colored import fg, bg, attr
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 second_api = "http://www.mapquestapi.com/directions/v2/alternateroutes?"
-key = "G6YCn5dNaSGvufdGp63IFq45Gvr8J8bC"
+key = "QzJEMxpGCINF81iU0qaANwNZesHMhO8x"
 
 while True:
-    username = input("Please Input Your Name: ")
+    username = input("%sPlease Input Your Name: %s" % (fg(11), attr(0)))
     if username == "quit" or username == "q":
         break
     print("Car, Airplane, Boat, Buses, or Train.")
-    vehicle = input("Please Input Type of Transportation: ")
+    vehicle = input("%sPlease Input Type of Transportation: %s" % (fg(11), attr(0)))
     if vehicle == "quit" or vehicle == "q":
         break
-    persons = input("How many passengers: ")
+    persons = input("%sHow many passengers: %s" % (fg(11), attr(0)))
     if persons == "quit" or persons == "q":
         break
     personsInt = int(persons)
     if (vehicle.lower() == "car" or vehicle.lower() == "airplane" or vehicle.lower() == "boat" or vehicle.lower() == "busses" or vehicle.lower() == "train"):
-        orig = input("Starting Location: ")
+        orig = input("%sStarting Location: %s" % (fg(11), attr(0)))
         if orig == "quit" or orig == "q":
             break
-        dest = input("Destination: ")
+        dest = input("%sDestination: %s" % (fg(11), attr(0)))
         if dest == "quit" or dest == "q":
             break
         url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
